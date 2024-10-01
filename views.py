@@ -23,11 +23,11 @@ def dameFecha(request):
 
     return HttpResponse(documento)
 
-def calculaEdad(request, agno):
+def calculaEdad(request, edad, agno):
 
-    edadActual=37
+    #edadActual=37
     periodo=agno-2024
-    edadFutura=edadActual+periodo
+    edadFutura=edad+periodo
     documento="<html><body><h2>En el Año %s tendras %s años" %(agno, edadFutura)
     
     return HttpResponse(documento)
