@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
-from django.template import loader
+from django.template.loader import get_template
+from django.shortcuts import render
+
+
 
 class Persona(object):
 
@@ -21,15 +24,15 @@ def saludo(request):
     temas2=["Lista1, Plista2, Clista3, Dlista4, Slista5"]
     temas3=[]
     ahora=datetime.datetime.now()
-    doc_externo=loader.get_template('plantilla1.html')
+    doc_externo=get_template('plantilla1.html')
     #doc_externo=open("D:/ProyectoDjango/Proyecto1/Proyecto1/Plantillas/plantilla1.html")
     #plt=Template(doc_externo.read())
     #doc_externo.close()
     #ctx=Context({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora,"temas":temas2}) #Asiganacion de una clave a un valor alamacenado ne una variable
     
-    documento=doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora,"temas":temas2})
+    #documento=doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora,"temas":temas2})
 
-    return HttpResponse (documento)
+    return render(request, 'plantilla1.html', {"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora,"temas":temas2})
 
 def despedida(request):
 
@@ -58,3 +61,8 @@ def calculaEdad(request, edad, agno):
     
     return HttpResponse(documento)
 
+def home(request):
+    return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')

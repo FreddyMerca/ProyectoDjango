@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Proyecto1.views import saludo, despedida, dameFecha, calculaEdad
+from . import views
 
 
 
@@ -25,6 +26,10 @@ urlpatterns = [
     path('saludo/', saludo),
     path('despedida/', despedida),
     path('fechaact/', dameFecha),
-    path('edades/<int:edad>/<int:agno>', calculaEdad)
+    path('edades/<int:edad>/<int:agno>', calculaEdad),
+    path('inicio/', views.home, name='home'),
+    path('about/', views.about, name='about'),
 ]
+
+
 
